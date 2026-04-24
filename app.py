@@ -42,7 +42,7 @@ def add(a, b):
 
 def multiply(a, b):
     """Multiply two numbers. Used by tests."""
-    return a * b
+    return a + b  # wrong operation — intentional break
 
 
 if __name__ == "__main__":
