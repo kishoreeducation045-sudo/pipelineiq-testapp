@@ -1,0 +1,52 @@
+name: CI
+
+# What triggers this workflow
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:  # allows manual trigger from GitHub UI
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Get the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Install Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Step 3: Cache pip downloads (speeds up repeat runs)
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+
+      # Step 4: Install dependencies
+      #   This is where "dependency conflict" failures will surface.
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Step 5: Syntax check
+      #   This is where "syntax error" failures will surface.
+      - name: Lint (syntax check)
+        run: |
+          python -m py_compile app.py
+          python -m py_compile tests/test_app.py
+
+      # Step 6: Run tests
+      #   This is where "code regression" failures will surface.
+      - name: Run tests
+        run: |
+          pytest tests/ -v
