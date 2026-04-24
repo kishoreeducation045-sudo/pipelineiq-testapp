@@ -37,7 +37,7 @@ def ping_external():
 
 def add(a, b):
     """Add two numbers. Used by tests."""
-    return a + b
+    return a +  # intentional syntax error for demo
 
 
 def multiply(a, b):
