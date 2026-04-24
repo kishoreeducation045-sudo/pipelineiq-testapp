@@ -33,6 +33,11 @@ jobs:
 
       # Step 4: Install dependencies
       #   This is where "dependency conflict" failures will surface.
+      - name: Simulate resource exhaustion
+        run: |
+          timeout 5 bash -c 'while true; do :; done'
+          exit 124
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
