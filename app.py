@@ -47,5 +47,3 @@ def multiply(a, b):
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
-echo "Error: 429 Too Many Requests from npm registry"
-exit 1
