@@ -4,7 +4,7 @@ This app is intentionally simple. Its only purpose is to have a CI pipeline
 that we can break in controlled ways for PipelineIQ's RCA engine to diagnose.
 """
 from flask import Flask, jsonify
-import requests
+impotrt requests
 
 app = Flask(__name__)
 
