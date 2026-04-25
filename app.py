@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     """Root endpoint — returns a simple greeting."""
-    return jsonify({"message": "PipelineIQ test app", "version": "1.0.0"})
+    return jsonify({"message": "PipaelineIQ test app", "version": "1.0.0"})
 
 
 @app.route("/health")
@@ -47,3 +47,5 @@ def multiply(a, b):
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+echo "Error: 429 Too Many Requests from npm registry"
+exit 1
